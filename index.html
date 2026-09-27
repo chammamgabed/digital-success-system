@@ -1,33 +1,51 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Digital Success System</title>
-  <meta name="description" content="The Digital Success System - A practical digital business course.">  <!-- Paddle.js -->  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>  <script>
-    // Initialize Paddle Live
-    Paddle.Initialize({
-      token: "   live_13fee88801181de988e468a9776              "
 
-      
+  <title>The Digital Success System</title>
+
+  <meta name="description" content="The Digital Success System - A practical digital business course.">
+
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+
+  <script>
+    Paddle.Environment.set("sandbox");
+
+    Paddle.Initialize({
+      token: "ضع_هنا_الـ_test_token_الخاص_بك"
     });
 
-    // Open Paddle Checkout
     function openCheckout() {
       Paddle.Checkout.open({
         items: [
           {
-            priceId: "pri_01m3cvfeer0p8762p0emmycqm8",
+            priceId: "pri_01m3hq83szwpw1aqj47ms9jma9",
             quantity: 1
           }
         ]
       });
     }
-  </script></head><body>  <h1>The Digital Success System</h1>  <h2>Build Your Digital Business</h2>  <p>
+  </script>
+</head>
+
+<body>
+
+  <h1>The Digital Success System</h1>
+
+  <h2>Build Your Digital Business</h2>
+
+  <p>
     The Digital Success System is a practical digital business course
     designed to teach online business, digital marketing, content creation,
     social media, affiliate marketing, digital products, e-commerce,
     and practical strategies for building and growing an online business.
-  </p>  <h2>What You Will Learn</h2>  <ul>
+  </p>
+
+  <h2>What You Will Learn</h2>
+
+  <ul>
     <li>Digital Marketing</li>
     <li>Content Creation</li>
     <li>Social Media Marketing</li>
@@ -38,11 +56,21 @@
     <li>Canva and Visual Content</li>
     <li>Pinterest, TikTok, Instagram and Facebook</li>
     <li>Online Business Strategies</li>
-  </ul>  <h2>Get Access</h2>  <p><strong>One-time payment: $35</strong></p><button onclick="openCheckout()">Buy Now</button>
+  </ul>
 
-  <hr>  <p>
+  <h2>Get Access</h2>
+
+  <p><strong>One-time payment: $15</strong></p>
+
+  <button onclick="openCheckout()">Buy Now</button>
+
+  <hr>
+
+  <p>
     <a href="terms.html">Terms of Service</a> |
     <a href="privacy.html">Privacy Policy</a> |
     <a href="refund.html">Refund Policy</a>
-  </p></body>
+  </p>
+
+</body>
 </html>
