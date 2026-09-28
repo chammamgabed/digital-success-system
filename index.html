@@ -15,20 +15,26 @@
 
     Paddle.Initialize({
       token: "test_1a3e07ec89984431abdc1d50bc6",
+
       eventCallback: function(data) {
         console.log("PADDLE EVENT:", data);
 
-        if (data && data.name === "checkout.error") {
-          document.getElementById("errorBox").style.display = "block";
+        var box = document.getElementById("paddleResult");
 
-          document.getElementById("errorMessage").textContent =
-            JSON.stringify(data, null, 2);
+        if (box) {
+          box.style.display = "block";
+          box.textContent = JSON.stringify(data, null, 2);
         }
       }
     });
 
     function openCheckout() {
-      console.log("Opening Paddle Checkout...");
+      var box = document.getElementById("paddleResult");
+
+      if (box) {
+        box.style.display = "block";
+        box.textContent = "Opening Paddle Checkout...";
+      }
 
       Paddle.Checkout.open({
         items: [
@@ -76,22 +82,18 @@
 
   <button onclick="openCheckout()">Buy Now</button>
 
-  <div
-    id="errorBox"
+  <pre
+    id="paddleResult"
     style="
       display:none;
       margin-top:20px;
       padding:15px;
-      border:1px solid red;
-      background:#fff0f0;
+      background:#f5f5f5;
+      border:1px solid #ccc;
       white-space:pre-wrap;
       word-break:break-word;
     "
-  >
-    <strong>Paddle Error:</strong>
-
-    <pre id="errorMessage"></pre>
-  </div>
+  ></pre>
 
   <hr>
 
@@ -104,10 +106,9 @@
 </body>
 </html>
 
-الآن
+مهم: لا تضف أي شيء بعد "</html>".
 
-ضع هذا الكود كاملًا مكان الكود القديم في "index.html" ثم Commit changes.
+بعد لصق الكود:
+Commit changes → افتح الموقع → Buy Now.
 
-بعدها افتح الموقع واضغط Buy Now.
-
-إذا ظهر الخطأ، انسخ لي النص الذي يظهر تحت "Paddle Error:"، وسنعرف السبب الحقيقي.
+إذا ظهر الخطأ، أخبرني بما يظهر داخل الصندوق الرمادي تحت الزر.
