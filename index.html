@@ -6,7 +6,8 @@
 
   <title>The Digital Success System</title>
 
-  <meta name="description" content="The Digital Success System - A practical digital business course.">
+  <meta name="description"
+        content="The Digital Success System - A practical digital business course.">
 
   <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 
@@ -16,34 +17,54 @@
     Paddle.Initialize({
       token: "test_1a3e07ec89984431abdc1d50bc6",
 
-      eventCallback: function(data) {
-        console.log("PADDLE EVENT:", data);
+      eventCallback: function (data) {
+        console.log("Paddle event:", data);
 
-        var box = document.getElementById("paddleResult");
+        var result = document.getElementById("paddle-result");
 
-        if (box) {
-          box.style.display = "block";
-          box.textContent = JSON.stringify(data, null, 2);
+        if (result) {
+          result.style.display = "block";
+
+          try {
+            result.textContent = JSON.stringify(data, null, 2);
+          } catch (error) {
+            result.textContent = "Paddle event received.";
+          }
         }
       }
     });
 
     function openCheckout() {
-      var box = document.getElementById("paddleResult");
+      var result = document.getElementById("paddle-result");
 
-      if (box) {
-        box.style.display = "block";
-        box.textContent = "Opening Paddle Checkout...";
+      if (result) {
+        result.style.display = "block";
+        result.textContent = "Opening Paddle Checkout...";
       }
 
-      Paddle.Checkout.open({
-        items: [
-          {
-            priceId: "pri_01m3hq83szwpw1aqj47ms9jma9",
-            quantity: 1
+      try {
+        Paddle.Checkout.open({
+          items: [
+            {
+              priceId: "pri_01m3hq83szwpw1aqj47ms9jma9",
+              quantity: 1
+            }
+          ],
+          settings: {
+            displayMode: "overlay",
+            theme: "light",
+            locale: "en"
           }
-        ]
-      });
+        });
+      } catch (error) {
+        console.error("Paddle Checkout error:", error);
+
+        if (result) {
+          result.textContent =
+            "JavaScript error:\n\n" +
+            (error.message || error);
+        }
+      }
     }
   </script>
 </head>
@@ -80,18 +101,20 @@
 
   <p><strong>One-time payment: $15</strong></p>
 
-  <button onclick="openCheckout()">Buy Now</button>
+  <button type="button" onclick="openCheckout()">
+    Buy Now
+  </button>
 
   <pre
-    id="paddleResult"
+    id="paddle-result"
     style="
-      display:none;
-      margin-top:20px;
-      padding:15px;
-      background:#f5f5f5;
-      border:1px solid #ccc;
-      white-space:pre-wrap;
-      word-break:break-word;
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      background: #f5f5f5;
+      white-space: pre-wrap;
+      word-break: break-word;
     "
   ></pre>
 
@@ -106,9 +129,10 @@
 </body>
 </html>
 
-مهم: لا تضف أي شيء بعد "</html>".
+مهم: هذا الكود لا يحتوي على أي نص بعد "</html>".
 
-بعد لصق الكود:
-Commit changes → افتح الموقع → Buy Now.
+بعد "Commit changes" جرّب Buy Now مرة واحدة.
 
-إذا ظهر الخطأ، أخبرني بما يظهر داخل الصندوق الرمادي تحت الزر.
+إذا بقيت رسالة Something went wrong، فالمشكلة على الأرجح ليست في HTML نفسه؛ وثائق Paddle تذكر أن الأسباب الشائعة المتبقية هي إعدادات الحساب، الـtoken، الـprice ID، أو إعدادات Checkout، وأن الخطأ التفصيلي يظهر في أحداث Paddle/Console.
+
+ولا تغيّر الكود مرة أخرى قبل أن نرى الخطأ التفصيلي.
