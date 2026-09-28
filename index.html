@@ -14,7 +14,7 @@
     Paddle.Environment.set("sandbox");
 
     Paddle.Initialize({
-      token:  "test_1a3e07ec89984431abdc1d50bc6"
+      token: "test_1a3e07ec89984431abdc1d50bc6"
     });
 
     function openCheckout() {
@@ -23,7 +23,7 @@
       Paddle.Checkout.open({
         items: [
           {
-            priceId: "pri_01m3hq83szwpw1",
+            priceId: "pri_01m3hq83szwpw1aqj47ms9jma9",
             quantity: 1
           }
         ]
@@ -76,3 +76,9 @@
 
 </body>
 </html>
+
+التغيير الوحيد المهم: تم تصحيح "priceId" إلى الـ ID الكامل:
+
+"pri_01m3hq83szwpw1aqj47ms9jma9"
+
+بعد وضع الكود في GitHub، اضغط Commit changes، ثم افتح موقعك وجرب Buy Now مرة أخرى.
