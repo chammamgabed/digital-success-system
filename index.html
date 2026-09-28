@@ -14,7 +14,17 @@
     Paddle.Environment.set("sandbox");
 
     Paddle.Initialize({
-      token: "test_1a3e07ec89984431abdc1d50bc6"
+      token: "test_1a3e07ec89984431abdc1d50bc6",
+      eventCallback: function(data) {
+        console.log("PADDLE EVENT:", data);
+
+        if (data && data.name === "checkout.error") {
+          document.getElementById("errorBox").style.display = "block";
+
+          document.getElementById("errorMessage").textContent =
+            JSON.stringify(data, null, 2);
+        }
+      }
     });
 
     function openCheckout() {
@@ -66,6 +76,23 @@
 
   <button onclick="openCheckout()">Buy Now</button>
 
+  <div
+    id="errorBox"
+    style="
+      display:none;
+      margin-top:20px;
+      padding:15px;
+      border:1px solid red;
+      background:#fff0f0;
+      white-space:pre-wrap;
+      word-break:break-word;
+    "
+  >
+    <strong>Paddle Error:</strong>
+
+    <pre id="errorMessage"></pre>
+  </div>
+
   <hr>
 
   <p>
@@ -77,8 +104,10 @@
 </body>
 </html>
 
-التغيير الوحيد المهم: تم تصحيح "priceId" إلى الـ ID الكامل:
+الآن
 
-"pri_01m3hq83szwpw1aqj47ms9jma9"
+ضع هذا الكود كاملًا مكان الكود القديم في "index.html" ثم Commit changes.
 
-بعد وضع الكود في GitHub، اضغط Commit changes، ثم افتح موقعك وجرب Buy Now مرة أخرى.
+بعدها افتح الموقع واضغط Buy Now.
+
+إذا ظهر الخطأ، انسخ لي النص الذي يظهر تحت "Paddle Error:"، وسنعرف السبب الحقيقي.
